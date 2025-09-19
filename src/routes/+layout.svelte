@@ -1,13 +1,28 @@
-<script>
+<script lang="ts">
   import Icon from "@iconify/svelte";
   import SidebarMenu from "./SidebarMenu.svelte";
   import "../app.css";
 
+  import Dashboard from "../Components/Dashboard.svelte";
+  import Product from "../Components/Product.svelte";
+
+  type PageName = "Dashboard" | "Product";
+
   let sidebarOpen = false;
   let collapsed = false;
+  let activePage: PageName = "Dashboard";
+
+  const pages: Record<PageName, any> = {
+    Dashboard,
+    Product,
+  };
 
   function toggleSidebar() {
     collapsed = !collapsed;
+  }
+
+  function setPage(event: CustomEvent<PageName>) {
+    activePage = event.detail;
   }
 </script>
 
@@ -18,7 +33,12 @@
     class:w-16={collapsed}
   >
     <div class="flex flex-col h-full text-gray-700 p-4">
-      <SidebarMenu {collapsed} {toggleSidebar} />
+      <SidebarMenu
+        {collapsed}
+        {activePage}
+        {toggleSidebar}
+        on:selectPage={setPage}
+      />
     </div>
   </aside>
 
@@ -34,7 +54,9 @@
     >
       <SidebarMenu
         collapsed={false}
+        {activePage}
         toggleSidebar={() => (sidebarOpen = false)}
+        on:selectPage={setPage}
       />
     </aside>
   {/if}
@@ -49,11 +71,11 @@
         <Icon icon="mdi:menu" class="text-2xl text-gray-600" />
       </button>
 
-      <h1 class="text-lg font-semibold">Dashboard</h1>
+      <h1 class="text-lg font-semibold">{activePage}</h1>
     </header>
 
     <main class="flex-1 p-6">
-      <slot />
+      <svelte:component this={pages[activePage]} />
     </main>
   </div>
 </div>

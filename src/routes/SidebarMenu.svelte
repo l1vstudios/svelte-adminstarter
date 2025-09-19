@@ -1,7 +1,16 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
+  import { createEventDispatcher } from "svelte";
+
   export let collapsed: boolean = false;
   export let toggleSidebar: () => void;
+  export let activePage: string = "Dashboard";
+
+  const dispatch = createEventDispatcher();
+
+  function selectPage(page: string) {
+    dispatch("selectPage", page);
+  }
 </script>
 
 <div class="flex flex-col h-full text-gray-700">
@@ -30,9 +39,12 @@
       <h2 class="text-xs font-semibold text-gray-400 mb-2">MAIN MENU</h2>
     {/if}
     <nav class="space-y-1">
-      <a
-        href="/"
-        class="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-100 text-gray-900"
+      <button
+        on:click={() => selectPage("Dashboard")}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
+        class:bg-gray-100={activePage === "Dashboard"}
+        class:text-gray-900={activePage === "Dashboard"}
+        class:hover:bg-gray-100={activePage !== "Dashboard"}
         class:justify-center={collapsed}
         title={collapsed ? "Dashboard" : ""}
       >
@@ -40,21 +52,29 @@
         {#if !collapsed}
           <span>Dashboard</span>
         {/if}
-      </a>
-      <a
-        href="/products"
-        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"
+      </button>
+
+      <button
+        on:click={() => selectPage("Product")}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
+        class:bg-gray-100={activePage === "Product"}
+        class:text-gray-900={activePage === "Product"}
+        class:hover:bg-gray-100={activePage !== "Product"}
         class:justify-center={collapsed}
-        title={collapsed ? "Products" : ""}
+        title={collapsed ? "Product" : ""}
       >
         <Icon icon="mdi:cube-outline" class="text-lg flex-shrink-0" />
         {#if !collapsed}
-          <span>Products</span>
+          <span>Product</span>
         {/if}
-      </a>
-      <a
-        href="/orders"
-        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"
+      </button>
+
+      <button
+        on:click={() => selectPage("Orders")}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
+        class:bg-gray-100={activePage === "Orders"}
+        class:text-gray-900={activePage === "Orders"}
+        class:hover:bg-gray-100={activePage !== "Orders"}
         class:justify-center={collapsed}
         title={collapsed ? "Orders" : ""}
       >
@@ -62,10 +82,14 @@
         {#if !collapsed}
           <span>Orders</span>
         {/if}
-      </a>
-      <a
-        href="/customers"
-        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"
+      </button>
+
+      <button
+        on:click={() => selectPage("Customers")}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
+        class:bg-gray-100={activePage === "Customers"}
+        class:text-gray-900={activePage === "Customers"}
+        class:hover:bg-gray-100={activePage !== "Customers"}
         class:justify-center={collapsed}
         title={collapsed ? "Customers" : ""}
       >
@@ -73,10 +97,14 @@
         {#if !collapsed}
           <span>Customers</span>
         {/if}
-      </a>
-      <a
-        href="/chat"
-        class="flex items-center px-3 py-2 rounded-lg hover:bg-gray-100 relative"
+      </button>
+
+      <button
+        on:click={() => selectPage("Chat")}
+        class="flex items-center px-3 py-2 rounded-lg w-full text-left relative"
+        class:bg-gray-100={activePage === "Chat"}
+        class:text-gray-900={activePage === "Chat"}
+        class:hover:bg-gray-100={activePage !== "Chat"}
         class:justify-center={collapsed}
         title={collapsed ? "Chat (22)" : ""}
       >
@@ -92,7 +120,7 @@
             >22</span
           >
         {/if}
-      </a>
+      </button>
     </nav>
   </div>
 
@@ -101,9 +129,12 @@
       <h2 class="text-xs font-semibold text-gray-400 mb-2">OTHER</h2>
     {/if}
     <nav class="space-y-1">
-      <a
-        href="/email"
-        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"
+      <button
+        on:click={() => selectPage("Email")}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
+        class:bg-gray-100={activePage === "Email"}
+        class:text-gray-900={activePage === "Email"}
+        class:hover:bg-gray-100={activePage !== "Email"}
         class:justify-center={collapsed}
         title={collapsed ? "Email" : ""}
       >
@@ -111,10 +142,14 @@
         {#if !collapsed}
           <span>Email</span>
         {/if}
-      </a>
-      <a
-        href="/analytics"
-        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"
+      </button>
+
+      <button
+        on:click={() => selectPage("Analytics")}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
+        class:bg-gray-100={activePage === "Analytics"}
+        class:text-gray-900={activePage === "Analytics"}
+        class:hover:bg-gray-100={activePage !== "Analytics"}
         class:justify-center={collapsed}
         title={collapsed ? "Analytics" : ""}
       >
@@ -122,10 +157,14 @@
         {#if !collapsed}
           <span>Analytics</span>
         {/if}
-      </a>
-      <a
-        href="/integration"
-        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"
+      </button>
+
+      <button
+        on:click={() => selectPage("Integration")}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
+        class:bg-gray-100={activePage === "Integration"}
+        class:text-gray-900={activePage === "Integration"}
+        class:hover:bg-gray-100={activePage !== "Integration"}
         class:justify-center={collapsed}
         title={collapsed ? "Integration" : ""}
       >
@@ -133,10 +172,14 @@
         {#if !collapsed}
           <span>Integration</span>
         {/if}
-      </a>
-      <a
-        href="/performance"
-        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"
+      </button>
+
+      <button
+        on:click={() => selectPage("Performance")}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
+        class:bg-gray-100={activePage === "Performance"}
+        class:text-gray-900={activePage === "Performance"}
+        class:hover:bg-gray-100={activePage !== "Performance"}
         class:justify-center={collapsed}
         title={collapsed ? "Performance" : ""}
       >
@@ -144,7 +187,7 @@
         {#if !collapsed}
           <span>Performance</span>
         {/if}
-      </a>
+      </button>
     </nav>
   </div>
 
@@ -154,9 +197,12 @@
       <h2 class="text-xs font-semibold text-gray-400 mb-2">ACCOUNT</h2>
     {/if}
     <nav class="space-y-1">
-      <a
-        href="/account"
-        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"
+      <button
+        on:click={() => selectPage("Account")}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
+        class:bg-gray-100={activePage === "Account"}
+        class:text-gray-900={activePage === "Account"}
+        class:hover:bg-gray-100={activePage !== "Account"}
         class:justify-center={collapsed}
         title={collapsed ? "Account" : ""}
       >
@@ -164,10 +210,14 @@
         {#if !collapsed}
           <span>Account</span>
         {/if}
-      </a>
-      <a
-        href="/members"
-        class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100"
+      </button>
+
+      <button
+        on:click={() => selectPage("Members")}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
+        class:bg-gray-100={activePage === "Members"}
+        class:text-gray-900={activePage === "Members"}
+        class:hover:bg-gray-100={activePage !== "Members"}
         class:justify-center={collapsed}
         title={collapsed ? "Members" : ""}
       >
@@ -178,7 +228,7 @@
         {#if !collapsed}
           <span>Members</span>
         {/if}
-      </a>
+      </button>
     </nav>
   </div>
 </div>
