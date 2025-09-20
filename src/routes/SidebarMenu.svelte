@@ -13,16 +13,19 @@
   }
 </script>
 
-<div class="flex flex-col h-full text-gray-700">
+<div
+  class="flex flex-col h-full text-white bg-gradient-to-b from-blue-900 to-blue-950"
+>
+  <!-- HEADER -->
   <div class="flex items-center justify-between mb-8 px-2">
     {#if !collapsed}
       <div>
-        <h1 class="text-lg font-bold">Admin Dashboard.</h1>
-        <p class="text-xs text-gray-500">SVELTE TAILWIND</p>
+        <h1 class="text-lg font-bold">LAUNDRY ONLINE</h1>
+        <p class="text-xs text-gray-300"></p>
       </div>
     {/if}
     <button
-      class="text-gray-500 hover:text-gray-700 p-1"
+      class="text-gray-300 hover:text-white p-1"
       aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
       on:click={toggleSidebar}
     >
@@ -36,15 +39,14 @@
   <!-- MAIN MENU -->
   <div class="mb-6 px-2">
     {#if !collapsed}
-      <h2 class="text-xs font-semibold text-gray-400 mb-2">MAIN MENU</h2>
+      <h2 class="text-xs font-semibold text-gray-300 mb-2">MAIN MENU</h2>
     {/if}
     <nav class="space-y-1">
       <button
         on:click={() => selectPage("Dashboard")}
-        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
-        class:bg-gray-100={activePage === "Dashboard"}
-        class:text-gray-900={activePage === "Dashboard"}
-        class:hover:bg-gray-100={activePage !== "Dashboard"}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
+        class:bg-blue-800={activePage === "Dashboard"}
+        class:hover:bg-blue-800={activePage !== "Dashboard"}
         class:justify-center={collapsed}
         title={collapsed ? "Dashboard" : ""}
       >
@@ -56,10 +58,9 @@
 
       <button
         on:click={() => selectPage("Product")}
-        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
-        class:bg-gray-100={activePage === "Product"}
-        class:text-gray-900={activePage === "Product"}
-        class:hover:bg-gray-100={activePage !== "Product"}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
+        class:bg-blue-800={activePage === "Product"}
+        class:hover:bg-blue-800={activePage !== "Product"}
         class:justify-center={collapsed}
         title={collapsed ? "Product" : ""}
       >
@@ -71,10 +72,9 @@
 
       <button
         on:click={() => selectPage("Orders")}
-        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
-        class:bg-gray-100={activePage === "Orders"}
-        class:text-gray-900={activePage === "Orders"}
-        class:hover:bg-gray-100={activePage !== "Orders"}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
+        class:bg-blue-800={activePage === "Orders"}
+        class:hover:bg-blue-800={activePage !== "Orders"}
         class:justify-center={collapsed}
         title={collapsed ? "Orders" : ""}
       >
@@ -86,10 +86,9 @@
 
       <button
         on:click={() => selectPage("Customers")}
-        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
-        class:bg-gray-100={activePage === "Customers"}
-        class:text-gray-900={activePage === "Customers"}
-        class:hover:bg-gray-100={activePage !== "Customers"}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
+        class:bg-blue-800={activePage === "Customers"}
+        class:hover:bg-blue-800={activePage !== "Customers"}
         class:justify-center={collapsed}
         title={collapsed ? "Customers" : ""}
       >
@@ -101,17 +100,17 @@
 
       <button
         on:click={() => selectPage("Chat")}
-        class="flex items-center px-3 py-2 rounded-lg w-full text-left relative"
-        class:bg-gray-100={activePage === "Chat"}
-        class:text-gray-900={activePage === "Chat"}
-        class:hover:bg-gray-100={activePage !== "Chat"}
+        class="flex items-center px-3 py-2 rounded-lg w-full text-left relative transition"
+        class:bg-blue-800={activePage === "Chat"}
+        class:hover:bg-blue-800={activePage !== "Chat"}
         class:justify-center={collapsed}
         title={collapsed ? "Chat (22)" : ""}
       >
         <Icon icon="mdi:chat-outline" class="text-lg flex-shrink-0" />
         {#if !collapsed}
           <span class="ml-3">Chat</span>
-          <span class="text-xs bg-gray-200 px-2 py-0.5 rounded-full ml-auto"
+          <span
+            class="text-xs bg-white text-blue-900 px-2 py-0.5 rounded-full ml-auto"
             >22</span
           >
         {:else}
@@ -124,17 +123,17 @@
     </nav>
   </div>
 
+  <!-- OTHER -->
   <div class="mb-6 px-2">
     {#if !collapsed}
-      <h2 class="text-xs font-semibold text-gray-400 mb-2">OTHER</h2>
+      <h2 class="text-xs font-semibold text-gray-300 mb-2">OTHER</h2>
     {/if}
     <nav class="space-y-1">
       <button
         on:click={() => selectPage("Email")}
-        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
-        class:bg-gray-100={activePage === "Email"}
-        class:text-gray-900={activePage === "Email"}
-        class:hover:bg-gray-100={activePage !== "Email"}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
+        class:bg-blue-800={activePage === "Email"}
+        class:hover:bg-blue-800={activePage !== "Email"}
         class:justify-center={collapsed}
         title={collapsed ? "Email" : ""}
       >
@@ -146,10 +145,9 @@
 
       <button
         on:click={() => selectPage("Analytics")}
-        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
-        class:bg-gray-100={activePage === "Analytics"}
-        class:text-gray-900={activePage === "Analytics"}
-        class:hover:bg-gray-100={activePage !== "Analytics"}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
+        class:bg-blue-800={activePage === "Analytics"}
+        class:hover:bg-blue-800={activePage !== "Analytics"}
         class:justify-center={collapsed}
         title={collapsed ? "Analytics" : ""}
       >
@@ -161,10 +159,9 @@
 
       <button
         on:click={() => selectPage("Integration")}
-        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
-        class:bg-gray-100={activePage === "Integration"}
-        class:text-gray-900={activePage === "Integration"}
-        class:hover:bg-gray-100={activePage !== "Integration"}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
+        class:bg-blue-800={activePage === "Integration"}
+        class:hover:bg-blue-800={activePage !== "Integration"}
         class:justify-center={collapsed}
         title={collapsed ? "Integration" : ""}
       >
@@ -176,10 +173,9 @@
 
       <button
         on:click={() => selectPage("Performance")}
-        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
-        class:bg-gray-100={activePage === "Performance"}
-        class:text-gray-900={activePage === "Performance"}
-        class:hover:bg-gray-100={activePage !== "Performance"}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
+        class:bg-blue-800={activePage === "Performance"}
+        class:hover:bg-blue-800={activePage !== "Performance"}
         class:justify-center={collapsed}
         title={collapsed ? "Performance" : ""}
       >
@@ -194,15 +190,14 @@
   <!-- ACCOUNT -->
   <div class="mt-auto px-2">
     {#if !collapsed}
-      <h2 class="text-xs font-semibold text-gray-400 mb-2">ACCOUNT</h2>
+      <h2 class="text-xs font-semibold text-gray-300 mb-2">ACCOUNT</h2>
     {/if}
     <nav class="space-y-1">
       <button
         on:click={() => selectPage("Account")}
-        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
-        class:bg-gray-100={activePage === "Account"}
-        class:text-gray-900={activePage === "Account"}
-        class:hover:bg-gray-100={activePage !== "Account"}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
+        class:bg-blue-800={activePage === "Account"}
+        class:hover:bg-blue-800={activePage !== "Account"}
         class:justify-center={collapsed}
         title={collapsed ? "Account" : ""}
       >
@@ -214,10 +209,9 @@
 
       <button
         on:click={() => selectPage("Members")}
-        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left"
-        class:bg-gray-100={activePage === "Members"}
-        class:text-gray-900={activePage === "Members"}
-        class:hover:bg-gray-100={activePage !== "Members"}
+        class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
+        class:bg-blue-800={activePage === "Members"}
+        class:hover:bg-blue-800={activePage !== "Members"}
         class:justify-center={collapsed}
         title={collapsed ? "Members" : ""}
       >

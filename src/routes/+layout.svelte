@@ -26,13 +26,16 @@
   }
 </script>
 
-<div class="flex h-screen bg-gray-50">
+<div class="flex bg-gray-50">
+  <!-- ===== Desktop Sidebar ===== -->
   <aside
-    class="hidden md:flex flex-col bg-white border-r transition-all duration-300"
+    class="hidden md:flex fixed left-0 top-0 h-screen flex-col
+           bg-gradient-to-b from-blue-900 to-blue-950 text-white
+           transition-all duration-300 z-50"
     class:w-64={!collapsed}
     class:w-16={collapsed}
   >
-    <div class="flex flex-col h-full text-gray-700 p-4">
+    <div class="flex flex-col h-full p-4">
       <SidebarMenu
         {collapsed}
         {activePage}
@@ -42,15 +45,20 @@
     </div>
   </aside>
 
+  <!-- ===== Mobile Sidebar + Overlay ===== -->
   {#if sidebarOpen}
+    <!-- Overlay hitam -->
     <button
       class="fixed inset-0 z-40 bg-black bg-opacity-30 md:hidden"
       aria-label="Close sidebar"
       on:click={() => (sidebarOpen = false)}
     ></button>
 
+    <!-- Sidebar versi mobile -->
     <aside
-      class="fixed z-50 flex flex-col w-64 h-full bg-white border-r p-4 md:hidden"
+      class="fixed z-50 flex flex-col w-64 h-full
+             bg-gradient-to-b from-blue-900 to-blue-950 text-white
+             p-4 md:hidden"
     >
       <SidebarMenu
         collapsed={false}
@@ -61,8 +69,19 @@
     </aside>
   {/if}
 
-  <div class="flex-1 flex flex-col">
-    <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
+  <!-- ===== Main Content Area ===== -->
+  <div
+    class="flex-1 flex flex-col min-h-screen transition-all duration-300"
+    class:md:ml-64={!collapsed}
+    class:md:ml-16={collapsed}
+  >
+    <!-- Header -->
+    <header
+      class="bg-white shadow px-6 py-4 flex items-center sticky top-0 z-40"
+      class:justify-between={true}
+      class:md:justify-center={collapsed}
+    >
+      <!-- Tombol toggle sidebar hanya muncul di mobile -->
       <button
         class="md:hidden"
         on:click={() => (sidebarOpen = !sidebarOpen)}
@@ -72,8 +91,12 @@
       </button>
 
       <h1 class="text-lg font-semibold">{activePage}</h1>
+
+      <!-- Spacer untuk mobile agar title tetap di tengah -->
+      <div class="md:hidden w-8"></div>
     </header>
 
+    <!-- Konten -->
     <main class="flex-1 p-6">
       <svelte:component this={pages[activePage]} />
     </main>
