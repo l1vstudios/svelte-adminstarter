@@ -24,6 +24,7 @@
 		"vite": "^7.0.4"
 	},
 	"dependencies": {
-		"@iconify/svelte": "^5.0.2"
+		"@iconify/svelte": "^5.0.2",
+		"chart.js": "^4.5.0"
 	}
 }

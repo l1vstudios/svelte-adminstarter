@@ -57,16 +57,16 @@
       </button>
 
       <button
-        on:click={() => selectPage("Product")}
+        on:click={() => selectPage("Laundry")}
         class="flex items-center gap-3 px-3 py-2 rounded-lg w-full text-left transition"
-        class:bg-blue-800={activePage === "Product"}
-        class:hover:bg-blue-800={activePage !== "Product"}
+        class:bg-blue-800={activePage === "Laundry"}
+        class:hover:bg-blue-800={activePage !== "Laundry"}
         class:justify-center={collapsed}
-        title={collapsed ? "Product" : ""}
+        title={collapsed ? "Laundry" : ""}
       >
         <Icon icon="mdi:cube-outline" class="text-lg flex-shrink-0" />
         {#if !collapsed}
-          <span>Product</span>
+          <span>Laundry</span>
         {/if}
       </button>
 

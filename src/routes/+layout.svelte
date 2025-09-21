@@ -4,9 +4,10 @@
   import "../app.css";
 
   import Dashboard from "../Components/Dashboard.svelte";
-  import Product from "../Components/Product.svelte";
+  import Laundry from "../Components/Laundry.svelte";
+  import Orders from "../Components/Orders.svelte";
 
-  type PageName = "Dashboard" | "Product";
+  type PageName = "Dashboard" | "Laundry" | "Orders";
 
   let sidebarOpen = false;
   let collapsed = false;
@@ -14,7 +15,8 @@
 
   const pages: Record<PageName, any> = {
     Dashboard,
-    Product,
+    Laundry,
+    Orders,
   };
 
   function toggleSidebar() {
@@ -27,7 +29,6 @@
 </script>
 
 <div class="flex bg-gray-50">
-  <!-- ===== Desktop Sidebar ===== -->
   <aside
     class="hidden md:flex fixed left-0 top-0 h-screen flex-col
            bg-gradient-to-b from-blue-900 to-blue-950 text-white
@@ -45,16 +46,13 @@
     </div>
   </aside>
 
-  <!-- ===== Mobile Sidebar + Overlay ===== -->
   {#if sidebarOpen}
-    <!-- Overlay hitam -->
     <button
       class="fixed inset-0 z-40 bg-black bg-opacity-30 md:hidden"
       aria-label="Close sidebar"
       on:click={() => (sidebarOpen = false)}
     ></button>
 
-    <!-- Sidebar versi mobile -->
     <aside
       class="fixed z-50 flex flex-col w-64 h-full
              bg-gradient-to-b from-blue-900 to-blue-950 text-white
@@ -69,19 +67,16 @@
     </aside>
   {/if}
 
-  <!-- ===== Main Content Area ===== -->
   <div
     class="flex-1 flex flex-col min-h-screen transition-all duration-300"
     class:md:ml-64={!collapsed}
     class:md:ml-16={collapsed}
   >
-    <!-- Header -->
     <header
       class="bg-white shadow px-6 py-4 flex items-center sticky top-0 z-40"
       class:justify-between={true}
       class:md:justify-center={collapsed}
     >
-      <!-- Tombol toggle sidebar hanya muncul di mobile -->
       <button
         class="md:hidden"
         on:click={() => (sidebarOpen = !sidebarOpen)}
@@ -92,11 +87,9 @@
 
       <h1 class="text-lg font-semibold">{activePage}</h1>
 
-      <!-- Spacer untuk mobile agar title tetap di tengah -->
       <div class="md:hidden w-8"></div>
     </header>
 
-    <!-- Konten -->
     <main class="flex-1 p-6">
       <svelte:component this={pages[activePage]} />
     </main>
